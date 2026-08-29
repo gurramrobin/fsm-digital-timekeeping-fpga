@@ -1,0 +1,61 @@
+# ============================================================
+# .gitignore — Vivado FPGA Project
+# Excludes all Vivado-generated build artifacts
+# Only source .v files and documentation are tracked
+# ============================================================
+
+# Vivado project files
+*.xpr
+*.xpr.bak
+
+# Vivado generated directories
+.Xil/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+*.gen/
+*.bd/
+*.str/
+*.jou
+*.log
+*.pb
+*.wdb
+*.bit
+*.ltx
+*.rpt
+*.dcp
+*.xml
+
+# Vivado backup files
+*.bak
+*~
+
+# Simulation artifacts
+*.vcd
+*.shm/
+*.dsn
+xsim.dir/
+webtalk/
+webtalk_pa.tcl
+
+# Timing reports
+timing_summary.rpt
+utilization.rpt
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor temporary files
+*.swp
+*.swo
+*.tmp
