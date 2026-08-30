@@ -54,27 +54,7 @@ The design is fully **synchronous**, uses **active-low** outputs for the Basys 3
 
 ## 🏗️ System Architecture
 
-```
-                        ┌─────────────────────────────────────────┐
-                        │              main.v (Top Module)         │
-                        │                                          │
-  Push Buttons ────────►│  Debouncers ──► FSM (mode_controller)   │
-  Switches    ────────►│                      │                    │
-  100MHz CLK  ────────►│  tick_1hz ◄──────────┘                   │
-                        │                      │                    │
-                        │         ┌────────────▼──────────────┐    │
-                        │         │   Mode-based Data MUX     │    │
-                        │         │  Clock / Alarm / Timer /  │    │
-                        │         │  Stopwatch / Timezone     │    │
-                        │         └────────────┬──────────────┘    │
-                        │                      │                    │
-                        │         seg7_controller ◄────────────────┤
-                        │         buzzer_ctrl   ◄────────────────  │
-                        └──────────────────────┬────────────────── ┘
-                                               │
-                                    7-Segment Display
-                                    Buzzer / LEDs
-```
+![System Architecture](docs/architecture.svg)
 
 ---
 
