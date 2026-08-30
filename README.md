@@ -129,7 +129,7 @@ All modules were individually simulated in **Vivado Behavioral Simulation** and 
 ## 📁 Project Structure
 
 ```
-digital-clock-system-fpga/
+fsm-digital-timekeeping-fpga/
 │
 ├── src/                        # RTL source files
 │   ├── main.v                  # Top-level module
