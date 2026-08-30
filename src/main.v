@@ -10,7 +10,7 @@ module main #(
     parameter integer DEBOUNCE_MS  = 20
 )(
     input  wire        clk,
-    input  wire        reset,          // BTNC - center button
+    input  wire        reset,          // SW1
     input  wire        mode_sw,        // BTNL
     input  wire        start_sw,       // BTNU
     input  wire        done_sw,        // BTNR
