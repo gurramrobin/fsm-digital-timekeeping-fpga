@@ -8,9 +8,6 @@ set_property PACKAGE_PIN W5 [get_ports clk]
 set_property IOSTANDARD LVCMOS33 [get_ports clk]
 create_clock -add -name sys_clk_pin -period 10.00 -waveform {0 5} [get_ports clk]
 
-## Reset - BTNC (Center Button)
-set_property PACKAGE_PIN U18 [get_ports reset]
-set_property IOSTANDARD LVCMOS33 [get_ports reset]
 
 ## Push Buttons
 # BTNL - Left Button - Mode
@@ -30,6 +27,10 @@ set_property PACKAGE_PIN U17 [get_ports silence_sw]
 set_property IOSTANDARD LVCMOS33 [get_ports silence_sw]
 
 ## Switches
+# Reset - SW1
+set_property PACKAGE_PIN V16 [get_ports reset]
+set_property IOSTANDARD LVCMOS33 [get_ports reset]
+
 # SW0 - Alarm Enable
 set_property PACKAGE_PIN V17 [get_ports alarm_en]
 set_property IOSTANDARD LVCMOS33 [get_ports alarm_en]
