@@ -108,6 +108,27 @@ set_property IOSTANDARD LVCMOS33 [get_ports led_timer]
 set_property PACKAGE_PIN V14 [get_ports led_buzzer]
 set_property IOSTANDARD LVCMOS33 [get_ports led_buzzer]
 
+## Hours Display LEDs - LD8 to LD12 (5-bit binary hours 0-23)
+# LD8  - Hours bit 0 (LSB)
+set_property PACKAGE_PIN V13 [get_ports {led_hrs[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_hrs[0]}]
+
+# LD9  - Hours bit 1
+set_property PACKAGE_PIN V3  [get_ports {led_hrs[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_hrs[1]}]
+
+# LD10 - Hours bit 2
+set_property PACKAGE_PIN W3  [get_ports {led_hrs[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_hrs[2]}]
+
+# LD11 - Hours bit 3
+set_property PACKAGE_PIN U3  [get_ports {led_hrs[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_hrs[3]}]
+
+# LD12 - Hours bit 4 (MSB)
+set_property PACKAGE_PIN P3  [get_ports {led_hrs[4]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {led_hrs[4]}]
+
 ## Buzzer - JA PMOD Connector Pin 1
 set_property PACKAGE_PIN J1  [get_ports buzzer]
 set_property IOSTANDARD LVCMOS33 [get_ports buzzer]
