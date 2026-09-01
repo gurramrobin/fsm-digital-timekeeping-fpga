@@ -10,7 +10,7 @@ module main #(
     parameter integer DEBOUNCE_MS  = 20
 )(
     input  wire        clk,
-    input  wire        reset,          // SW1
+    input  wire        reset,          // BTNC - center button
     input  wire        mode_sw,        // BTNL
     input  wire        start_sw,       // BTNU
     input  wire        done_sw,        // BTNR
@@ -27,6 +27,7 @@ module main #(
     output wire        led_alarm,      // LD5: alarm firing
     output wire        led_timer,      // LD6: timer firing
     output wire        led_buzzer,     // LD7: buzzer active
+    output wire [4:0]  led_hrs,        // LD12-LD8: current hours in binary
     // Buzzer - connect to JA pmod pin 1
     output wire        buzzer
 );
@@ -326,7 +327,7 @@ module main #(
     // LD5:      alarm_req
     // LD6:      timer_req
     // LD7:      buzzer
-    // LD12-LD8: hours in binary (5 bits)
+    // LD12-LD8: hours in binary (5 bits) — shows current mode's hours
     // =========================================================================
     assign led_mode   = mode;
     assign led_edit   = edit_enable;
@@ -334,5 +335,6 @@ module main #(
     assign led_alarm  = alarm_req;
     assign led_timer  = timer_req;
     assign led_buzzer = buzzer_internal;
+    assign led_hrs    = show_hrs;      // 5-bit hours on LD12-LD8
 
 endmodule
