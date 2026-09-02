@@ -47,7 +47,8 @@ The design is fully **synchronous**, uses **active-low** outputs for the Basys 3
 - ⚙️ **Set Time Mode** — Manually set the current time
 - 🔘 **Debounced Push Buttons** — Clean single-pulse detection
 - 🔔 **Buzzer Controller** — Unified alarm and timer buzzer with silence control
-- 💡 **LED Debug Indicators** — Mode, edit, alarm, timer, and buzzer status
+- 💡 **LED Debug Indicators** — Mode, edit, alarm, timer, and buzzer status on LD0–LD7
+- 🔢 **Hours Binary Display** — Current hours shown in 5-bit binary on LD8–LD12
 - 📺 **Multiplexed 7-Segment Display** — 4-digit display at ~1kHz refresh
 
 ---
@@ -193,9 +194,9 @@ fsm-digital-timekeeping-fpga/
 | FPGA Chip | Xilinx Artix-7 XC7A35T-1CPG236C |
 | System Clock | 100 MHz onboard oscillator |
 | Display | 4-digit 7-segment (onboard) |
-| Buttons | 5 onboard push buttons (BTNC/L/R/U/D) |
-| Switches | SW0 (alarm enable) |
-| LEDs | LD0–LD7 (debug indicators) |
+| Buttons | 4 onboard push buttons (BTNL/BTNU/BTNR/BTND) |
+| Switches | SW0 (alarm enable) · SW1 (reset) |
+| LEDs | LD0–LD7 (debug indicators) · LD8–LD12 (hours display in binary) |
 | Buzzer | External — connected to JA PMOD pin 1 |
 
 ---
@@ -243,17 +244,27 @@ fsm-digital-timekeeping-fpga/
 | Signal | Basys 3 Pin | Function |
 |--------|------------|----------|
 | `clk` | W5 | 100MHz system clock |
-| `reset` | U18 (BTNC) | Global reset |
+| `reset` | V16 (SW1) | Global reset switch |
 | `mode_sw` | W19 (BTNL) | Mode cycle button |
 | `start_sw` | T18 (BTNU) | Start / increment button |
 | `done_sw` | T17 (BTNR) | Done / confirm button |
 | `silence_sw` | U17 (BTND) | Silence buzzer button |
 | `alarm_en` | V17 (SW0) | Alarm enable switch |
-| `seg[6:0]` | W7–W10, V7, U7, U8 | 7-segment segments |
-| `an[3:0]` | U2, U4, V4, W4 | 7-segment anodes |
-| `dp` | V7 | Decimal point |
-| `led_mode[2:0]` | U16–E19 | Mode LEDs |
-| `buzzer` | JA1 (PMOD) | External buzzer |
+| `seg[6:0]` | W7, W6, U8, V8, U5, V5, U7 | 7-segment segments a–g |
+| `an[3:0]` | U2, U4, V4, W4 | 7-segment anodes (active low) |
+| `dp` | V7 | Decimal point (MM:SS separator) |
+| `led_mode[2:0]` | U16, E19, U19 | LD0–LD2: current mode in binary |
+| `led_edit` | V19 | LD3: edit mode active |
+| `led_clken` | W18 | LD4: 1Hz heartbeat |
+| `led_alarm` | U15 | LD5: alarm firing |
+| `led_timer` | U14 | LD6: timer expired |
+| `led_buzzer` | V14 | LD7: buzzer active |
+| `led_hrs[0]` | V13 | LD8: hours bit 0 (LSB) |
+| `led_hrs[1]` | V3 | LD9: hours bit 1 |
+| `led_hrs[2]` | W3 | LD10: hours bit 2 |
+| `led_hrs[3]` | U3 | LD11: hours bit 3 |
+| `led_hrs[4]` | P3 | LD12: hours bit 4 (MSB) |
+| `buzzer` | J1 (JA PMOD) | External buzzer output |
 
 ---
 
@@ -285,6 +296,6 @@ See the [LICENSE](LICENSE) file for details.
 
 ---
 
-> 🎓 **FSM-Based Multi-mode Digital Time Keeping System** — Developed as part of the **FPGA Design Series** at **NIELIT Tirupati**
-> Simulated and verified using **Xilinx Vivado XSim**
-> Target board: **Digilent Basys 3**
+> 🔧 Simulated and verified using **Xilinx Vivado XSim**
+> 🎯 Target board: **Digilent Basys 3 (XC7A35T)**
+> 👤 Designed and implemented by **Gurram Robin**
